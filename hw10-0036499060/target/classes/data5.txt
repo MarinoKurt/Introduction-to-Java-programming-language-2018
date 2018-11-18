@@ -1,0 +1,6 @@
+ECTS eval (made up data)
+wannabe Java programmer
+4,0 8,5 12,7 16,11 20,15 25,23 30,50
+0
+30
+2

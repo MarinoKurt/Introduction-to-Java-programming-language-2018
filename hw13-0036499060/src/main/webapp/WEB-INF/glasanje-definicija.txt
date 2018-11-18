@@ -1,0 +1,7 @@
+1	Queens of the Stone Age	https://www.youtube.com/watch?v=3lw6MZBmY-U
+2	Portugal. The Man	https://www.youtube.com/watch?v=pBkHHoOIIn8
+3	Alice in Chains	https://www.youtube.com/watch?v=Nco_kh8xJDs
+4	Arctic Monkeys	https://www.youtube.com/watch?v=71Es-8FfATo
+5	The Beatles	https://www.youtube.com/watch?v=NCtzkaL2t_Y
+6	Red Hot Chili Peppers	https://www.youtube.com/watch?v=Q0oIoR9mLwc
+7	John Mayer	https://www.youtube.com/watch?v=mQ055hHdxbE

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+button {
+	display: block;
+	background-color: DarkTurquoise;
+	font-weight: bold;
+	font-family: "Courier New", Courier, monospace;
+	font-size: 16px;
+	padding: 2px 2px;
+	text-align: center;
+	min-width: 150px;
+	min-height: 35px;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
+}
+
+button:hover {
+	border: 5px solid DeepPink;
+	box-shadow: 0 20px 20px 0 rgba(0, 0, 0, 0.24), 0 50px 50px 0
+		rgba(0, 0, 0, 0.19);
+	background-color: DeepPink; /* Green */
+	color: white;
+}
+
+.tag {
+	font-size: 25px;
+	padding: 2px 2px;
+}
+
+.bigPicture {
+	max-height: 750px;
+}
+
+#picture {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 30px;
+	text-align: center;
+	display: inline-block;
+	text-align: center
+}
+
+#allTags {
+	display: inline-block;
+}
+.container {
+    margin: auto;
+}
+</style>
+<meta charset="UTF-8">
+<title>Gallery</title>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/htmlescaping.js"></script>
+<script type="text/javascript">
+	$(document).ready(
+			function() {
+				$.ajax({
+					url : "rest/tags",
+					dataType : "json",
+					success : function(data) {
+						var tags = data.tags;
+						var html = "";
+						if (tags.length == 0) {
+							html = "Nema rezultata...";
+						} else {
+							for (var i = 0; i < tags.length; i++) {
+								html += "<button onclick=\"getThumbnails(\'"
+										+ htmlEscape(tags[i]) + "\');\">"
+										+ htmlEscape(tags[i]) + "</button>";
+							}
+						}
+						$("#allTags").html(html);
+					}
+
+				});
+			});
+
+	function getThumbnails(selectedTag) {
+		$.ajax({
+			url : "rest/filter/" + selectedTag,
+			data : {
+				dummy : Math.random()
+			},
+			dataType : "json",
+			success : function(data) {
+				var pictures = data.filtered;
+				var html = "";
+				if (pictures.length == 0) {
+					html = "Nema rezultata...";
+				} else {
+					for (var i = 0; i < pictures.length; i++) {
+						html += "<img src=\"servlets/thumbnail?name="
+								+ pictures[i].fileName
+								+ "\"onClick=\"showPicture(\'"
+								+ htmlEscape(pictures[i].fileName)
+								+ "\');\">  ";
+					}
+				}
+				$("#thumbnails").html(html);
+				$("#picture").html("&nbsp;");
+			}
+		});
+	}
+
+	function showPicture(pictureName) {
+		$
+				.ajax({
+					url : "rest/forName/" + pictureName,
+					data : {
+						dummy : Math.random()
+					},
+					dataType : "json",
+					success : function(data) {
+						var fileName = data.fileName;
+						var tags = data.pictureTags;
+						var title = data.title;
+						var html = "";
+
+						html += "<h1>" + title + "</h1>";
+						html += "<img class=\"bigPicture\" src=\"servlets/picture?name="
+								+ fileName + "\">";
+						html += "<br>";
+						html += "<p class=\"tag\">";
+						for (var i = 0; i < tags.length; i++) {
+							html += tags[i];
+							if (i < tags.length - 1) {
+								html += ", "
+							}
+						}
+						html += "</p>";
+
+						$("#picture").html(html);
+					}
+				});
+	}
+</script>
+</head>
+
+<body>
+
+	<div class="container">
+		<div id="allTags">&nbsp;</div>
+
+		<div id="picture">&nbsp;</div>
+
+		<div id="thumbnails">&nbsp;</div>
+	</div>
+</body>
+
+</html>
