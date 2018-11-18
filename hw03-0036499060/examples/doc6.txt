@@ -1,0 +1,2 @@
+{$= "b" "0" @tparamGet @dup "a" "0" @tparamGet + "b" @tparamSet "a" @tparamSet 
+"b" "0" @tparamGet "\r\n" $}

@@ -1,0 +1,15 @@
+Custom example. {$= @root i141      -2.34 $}
+Random text.
+
+
+{$         fOr why 3 14  153$}
+much node
+{$=i $}
+not done {$for meh 15 4 251$}
+	{$= i x y * zz$}
+
+ {$=$}
+
+more text {$         END$}
+{$= 215.4 one $}
+{$eNd$}

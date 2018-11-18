@@ -1,0 +1,6 @@
+For tag with only 2 arg
+uments:
+
+{$ for two 512 513  $}
+
+{$end$}

@@ -1,0 +1,7 @@
+{$ FOR i -1 10 1 $} 
+{$    FOR    sco_re            "-1"10 "1" $} 
+{$ FOR year 1 last_year $}
+
+{$end$}
+{$end$}
+{$end$}
